@@ -3,6 +3,7 @@ import os
 from flask import Flask, Response, request, render_template
 from twilio.twiml.voice_response import VoiceResponse
 from twilio.rest import Client
+from flask_ngrok import run_with_ngrok
 
 # Pull in configuration from system environment variables
 TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID')
@@ -15,7 +16,7 @@ client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
 # Create a Flask web app
 app = Flask(__name__)
-
+run_with_ngrok(app)
 
 # Render the home page
 @app.route('/')
